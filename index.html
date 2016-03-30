@@ -10,31 +10,16 @@
     <div class="column column-12" id="headline"></div>
   </div>
 </div>
-<div class="row middle">
-  <div class="column column-6">Player's Card
-    <div class="card">
-      <div class="front">
-        <div class="index">3<br />&spades;</div>
-        <div class="spotB1">&spades;</div>
-        <div class="spotB3">&spades;</div>
-        <div class="spotB5">&spades;</div>
-      </div>
-    </div>
-  </div>
-  <div class="column column-6">Computer's Card
-    <div class="card">
-      <div class="front">
-        <div class="index">3<br />&spades;</div>
-        <div class="spotB1">&spades;</div>
-        <div class="spotB3">&spades;</div>
-        <div class="spotB5">&spades;</div>
-      </div>
-    </div></div>
+<div class="row middle" id="BackgroundField">
+  <div class="column column-6" id="MyCard"></div>
+  <div class="column column-6" id="CompCard"></div>
   </div>
   <div class="row footer">
-    <div class="column column-6"><button class="starter">Play</button></div>
-    <div class="column column-6"><button class="scorekeeper">Score</button></div>
+    <div class="column column-4"><button id="starter">Play</button></div>
+    <div class="column column-4"><audio src="https://www.youtube.com/watch?v=dpWmlRNfLck" controls>War</audio></div>
+    <div class="column column-4"><button id="scorekeeper">Score</button></div>
   </div>
+  <script src="deck.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

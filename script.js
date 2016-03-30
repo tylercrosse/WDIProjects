@@ -1,106 +1,107 @@
-///Create the Card object, assign it a numerical value and a suit
+var deck = []
+var computerHand = []
+var playerHand = []
+var warHand = []
+var StartButton = document.querySelector("#starter")
+var PlayerCard = document.querySelector("#MyCard")
+var EnemyCard = document.querySelector("#CompCard")
 
-function Card(rank, suit) {
-  this.rank = rank;
-  this.suit = suit;
-  this.toString   = cardToString;
-  this.createNode = cardCreateNode;
-}
-
-function cardToString() {
-  var rank, suit;
-  switch (this.rank) {
-    case "A" :
-      rank = "Ace";
-      break;
-    case "2" :
-      rank = "Two";
-      break;
-    case "3" :
-      rank = "Three";
-      break;
-    case "4" :
-      rank = "Four";
-      break;
-    case "5" :
-      rank = "Five";
-      break;
-    case "6" :
-      rank = "Six";
-      break;
-    case "7" :
-      rank = "Seven";
-      break;
-    case "8" :
-      rank = "Eight";
-      break;
-    case "9" :
-      rank = "Nine";
-      break;
-    case "10" :
-      rank = "Ten";
-      break;
-    case "J" :
-      rank = "Jack"
-      break;
-    case "Q" :
-      rank = "Queen"
-      break;
-    case "K" :
-      rank = "King"
-      break;
-    default :
-      rank = null;
-      break;
+function makeDeck() {
+	var ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+	var cardNumber = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+  var suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+	for (var i=0; i < suits.length; i++) {
+    for (var j=0; j < ranks.length; j++){
+      var card = {}
+      card.cardNum = cardNumber[j]
+      card.rank    = ranks[j];
+      card.suit    = suits[i];
+      deck.push(card);
+    }
   }
-  suit = {
-    C: "Clubs",
-    D:"Diamonds",
-    H:"Hearts",
-    S: "Spades"
-  }[this.suit];
-
-  if (rank == null || suit == null)
-    return "";
-    return rank + " of " + suit;
 }
 
-//create an empty array of cards, and functions for manipulating it
-
-function Stack() {
-this.cards     = new Array();
-this.makeDeck  = stackMakeDeck;
-this.shuffle   = stackShuffle;
-this.deal      = stackDeal;
-this.draw      = stackDraw;
-this.addCard   = stackAddCard;
-this.combine   = stackCombine;
-this.cardCount = stackCardCount;
-}
-
-//make a cards array comprising a deck
-function stackMakeDeck(num_decks) {
-	var cards = []
-	var ranks = new Array("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K");
-	var suits = new Array("C", "D", "H", "S");
-	var cur_deck, cur_suit, cur_rank;
-	var deck_size = ranks.length * suits.length;
-	  for (cur_deck = 0; cur_deck < num_decks; cur_deck++)
-	    for (cur_suit = 0; cur_suit < suits.length; cur_suit++)
-	      for (cur_rank = 0; cur_rank < ranks.length; cur_rank++)
-	cards.push(new Card(ranks[cur_rank], suits[cur_suit]));
-	return cards
-}
-
-//shuffle the cards//
-function stackShuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffleDeck(){
+  var currentIndex = deck.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = deck[currentIndex];
+    deck[currentIndex] = deck[randomIndex];
+    deck[randomIndex] = temporaryValue;
   }
- return array;
 }
+
+function splitDeck() {
+   var i, j
+   for (i =0; i <= 25; i++) {
+          playerHand.push(deck[i]);
+      }
+   for (j=26; j <=51; j++){
+          computerHand.push(deck[j]);
+   }
+      }
+
+StartButton.addEventListener("click", function() {
+ var myCard = playerHand[0].cardNum
+ var theirCard = computerHand[0].cardNum
+ document.querySelector("#MyCard").innerHTML = playerHand[0].rank + " of " + playerHand[0].suit
+ document.querySelector("#CompCard").innerHTML = computerHand[0].rank + " of " + computerHand[0].suit
+ if (myCard < theirCard) {
+   var shifted = playerHand.shift();
+   computerHand.push(shifted);
+   var shifted2 = computerHand.shift();
+   computerHand.push(shifted2);
+   console.log("You worthless piece of shit.")
+ }
+ else if (myCard > theirCard) {
+    var shifted = computerHand.shift();
+    playerHand.push(shifted);
+    var shifted2 = playerHand.shift();
+    playerHand.push(shifted2);
+    console.log("You magnificent bastard!")
+  }
+  else {
+    tieBreaker()
+  }
+});
+
+function tieBreaker() {
+    alert("War!")
+    var cardA = playerHand[1].cardNum
+    var cardB = computerHand[1].cardNum
+    document.querySelector("#MyCard").innerHTML = playerHand[1].rank + " of " + playerHand[1].suit
+    document.querySelector("#CompCard").innerHTML = computerHand[1].rank + " of " + computerHand[1].suit
+    if (cardA < cardB) {
+      var shifted = computerHand.shift();
+      var shifted2 = playerHand.shift();
+      computerHand.push(shifted)
+      computerHand.push(shifted2)
+      var shifted = computerHand.shift();
+      var shifted2 = playerHand.shift();
+      computerHand.push(shifted)
+      playerHand.push(shifted2)
+      console.log("You worthless piece of shit.")
+    }
+    else if (cardA > cardB) {
+      var shifted = computerHand.shift();
+      var shifted2 = playerHand.shift();
+      playerHand.push(shifted);
+      playerHand.push(shifted2);
+      var shifted = computerHand.shift();
+      var shifted2 = playerHand.shift();
+      playerHand.push(shifted);
+      playerHand.push(shifted2);
+      console.log("You magnificent bastard!")
+
+  };
+}
+
+makeDeck();
+shuffleDeck(deck);
+splitDeck(deck);
+
+if (playerHand.length == 0)
+  alert("You lose. Your defeat brings shame upon your family, and the Shaolin temple.")
+if (computerHand.length ==0)
+  alert("You are victorious. Complete your triumph, and destroy your computer.")

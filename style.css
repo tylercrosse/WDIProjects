@@ -9,6 +9,7 @@
 .header {
   background-image: url("https://i.ytimg.com/vi/UIl0DvNYrhs/hqdefault.jpg");
   background-size: contain;
+
 }
 
 .column {
@@ -16,8 +17,9 @@
   position: relative;
   border-radius: 20px;
   text-align: center;
-  margin: 1%;
+  margin: 5% 10% 5% 10%;
   opacity: 0%;
+
 }
 
 #headline {
@@ -26,32 +28,61 @@
     height: 75px;
 }
 
-.body {
+.footer {
+  background-color: rgb(21, 126, 164);
+
 }
 
 .header > .column,
 .footer > .column {
-  padding: 25px;
+  margin-left: 1%;
+  margin-right: 1%;
+  padding: 20px;
 }
 
 .middle > .column  {
   height: 400px;
   line-height: 375px;
-    background-image: url("http://cdn1-www.craveonline.com/assets/uploads/2013/02/file_204449_0_Full_Metal_Jacket.jpg");
-    background-size: cover;
+  /*color: rgba(255, 0, 0, 0.5);*/
 }
 
+#BackgroundField {
+  background: url("FMJBackground.jpg");
+  background-size: cover;
+}
 
-.starter, .scorekeeper {
+#starter, #scorekeeper, #soundtrack {
+  font-size: 20px;
+  display: inline;
+}
+
+#MyCard, #CompCard {
+  background: url("cardBack.jpg");
+  background-size: cover;
+  width: 275px;
+  font-weight: bolder;
   font-size: 24px;
+  font-color: black;
 }
+
+/*.card {
+  background-image: url("graphics/cardback.gif");
+  border-color: #808080 #000000 #000000 #808080;
+  border-width: 1px;
+  border-style: solid;
+  color: #000000;
+  font-size: 20pt;
+  position: absolute;
+  width:  275px;
+  height: 375px;
+}*/
 
 .column-1 { width: 6.333%; }  /* = 8.333% - 2% */
 .column-2 { width: 14.66%; }
 .column-3 { width: 23%; }
 .column-4 { width: 31.33%; }
 .column-5 { width: 39.66%; }
-.column-6 { width: 48%; }
+.column-6 { width: 29%; }
 .column-7 { width: 56.33%; }
 .column-8 { width: 64.66%; }
 .column-9 { width: 73%; }
