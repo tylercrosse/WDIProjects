@@ -17,9 +17,7 @@
   position: relative;
   border-radius: 20px;
   text-align: center;
-  margin: 5% 10% 5% 10%;
-  opacity: 0%;
-
+  margin: 5% 13.1% 5% 13.1%;
 }
 
 #headline {
@@ -40,10 +38,13 @@
   padding: 20px;
 }
 
+.card {
+  height: 400px;
+}
+
 .middle > .column  {
   height: 400px;
   line-height: 375px;
-  /*color: rgba(255, 0, 0, 0.5);*/
 }
 
 #BackgroundField {
@@ -82,7 +83,7 @@
 .column-3 { width: 23%; }
 .column-4 { width: 31.33%; }
 .column-5 { width: 39.66%; }
-.column-6 { width: 29%; }
+.column-6 { width: 38%; }
 .column-7 { width: 56.33%; }
 .column-8 { width: 64.66%; }
 .column-9 { width: 73%; }
