@@ -1,6 +1,7 @@
 var deck = []
 var computerHand = []
 var playerHand = []
+// Be careful naming things with capital letters, typically variables with capitalized first letters are reserved for classes/constructors.
 var StartButton = document.querySelector("#starter")
 var ScoreButton = document.querySelector("#scorekeeper")
 var PlayerCard = document.querySelector("#MyCard")
@@ -37,6 +38,7 @@ function splitDeck() {
   computerHand = deck.slice(26);
 }
 
+// This function + makeDeck() are an awesome solution to not having a hard coded deck. But don't be afraid of hard coded data. Ultimately that's what at a database is, and what we're going to be using more and more moving forward.
 function setCardDisplay(id, card) {
   document.querySelector(id).innerHTML = card.rank + " of " + card.suit;
   document.querySelector(id).innerHTML = '<img class="card" src="CardFolder/' + card.rank + '_of_' + card.suit +  '.png" />'
@@ -48,6 +50,7 @@ StartButton.addEventListener("click", function() {
 
 //functions by moving all cardsInPlay into a new array. when a winner is determined,
 //the contents of that array are pushed to the winner's array.
+// :+1:
 function duelCards(playerHand, computerHand) {
   var playerNum   = null,
       computerNum = null,
@@ -55,6 +58,7 @@ function duelCards(playerHand, computerHand) {
       cardsInPlay = [];
 
   while (playerNum == computerNum && (playerHand.length > 0 && computerHand.length > 0) )  {
+    // Everything in this while loop could be pulled out into a separate function.
     var playerCard    = playerHand.shift(),
         computerCard  = computerHand.shift();
         playerNum     = playerCard.cardNum;
@@ -74,6 +78,8 @@ function duelCards(playerHand, computerHand) {
     else {
       console.log("hello");
       alert("War!");
+      // According to wikipedia 'If the two cards played are of equal value, then there is a "war".[1] Both players place the next card of their pile face down, depending on the variant, and then another card face-up. The owner of the higher face-up card wins the war and adds all six (or ten) cards on the table to the bottom of their deck.'
+      // As far as I can tell the winner here would only get four cards instead of six unless there is another war. Doing anything with war was a bonus and what you have here is great. I really like that you refactored it out of that crazy nested if conditional you had before.
     }
     cardsInPlay.push(playerCard, computerCard);
   }
@@ -90,6 +96,9 @@ ScoreButton.addEventListener("click", function() {
 makeDeck();
 shuffleDeck(deck);
 splitDeck(deck);
+
+// if you are commiting frequently you can ddlete commented out or old code because it will be backed up with git
+
 // duelCards();
 
 // function makeDeck() {
